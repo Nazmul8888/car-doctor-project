@@ -10,6 +10,8 @@ import Home from './components/Home/Home';
 import Login from './components/SharedPage/Login/Login';
 import SignUp from './components/SharedPage/SignUp/SignUp';
 import AuthProvider from './Route/Provider/AuthProvider';
+import CheckOut from './components/SharedPage/CheckOut/CheckOut';
+import Checking from './components/SharedPage/CheckOut/Checking/Checking';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +28,15 @@ const router = createBrowserRouter([
       {
         path: 'signUp',
         element: <SignUp></SignUp>
+      },
+      {
+        path:'checkout/:id',
+        element: <CheckOut></CheckOut>,
+        loader:({params}) => fetch(`http://localhost:5001/services/${params.id}`)
+      },
+      {
+        path: 'checking',
+        element: <Checking></Checking>
       }
     ]
   },

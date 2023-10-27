@@ -10,7 +10,7 @@ const Services = () => {
 
 
     useEffect(() => {
-         fetch('services.json')
+         fetch('http://localhost:5001/services')
          .then(res=> res.json())
          .then(data=> setCards(data))
       });

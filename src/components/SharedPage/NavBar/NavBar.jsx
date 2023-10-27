@@ -1,11 +1,39 @@
 import { Link } from "react-router-dom";
 import logo from '../../../assets/icons/logo.svg'
+import { useContext } from "react";
+import { AuthContext } from "../../../Route/Provider/AuthProvider";
 
 const NavBar = () => {
+
+  const {user, logOut}= useContext(AuthContext);
+  const handelLogOut = ()=>{
+    logOut()
+    .then(result=>{
+      console.log(result.user)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+
+  }
+
     const navItems = <>
+    
 
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
+        {user?.email? <>
+
+          
+          <li><Link to='/checking'>Checking</Link></li>
+          <li><button onClick={handelLogOut}>Logout</button></li>
+        </> 
+        :
+         
+        <li><Link to='/login'>Login</Link></li>
+
+        }
+        
     </>
   return (
     <div className="navbar bg-base-100 h-28 mb-4">
