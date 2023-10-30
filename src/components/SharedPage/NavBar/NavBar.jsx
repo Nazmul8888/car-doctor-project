@@ -22,9 +22,7 @@ const NavBar = () => {
 
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
-        {user?.email? <>
-
-          
+        {user?.email? <> 
           <li><Link to='/checking'>Checking</Link></li>
           <li><button onClick={handelLogOut}>Logout</button></li>
         </> 

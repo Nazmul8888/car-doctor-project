@@ -11,6 +11,7 @@ const Login = () => {
     const {SignIn}= useContext(AuthContext)
 
     const handelLogin = e=>{
+      e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
 

@@ -12,6 +12,7 @@ import SignUp from './components/SharedPage/SignUp/SignUp';
 import AuthProvider from './Route/Provider/AuthProvider';
 import CheckOut from './components/SharedPage/CheckOut/CheckOut';
 import Checking from './components/SharedPage/CheckOut/Checking/Checking';
+import PrivateRoute from './Route/Provider/PrivateRoute';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,8 +37,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'checking',
-        element: <Checking></Checking>
-      }
+        element: <PrivateRoute><Checking></Checking></PrivateRoute>,
+      },
     ]
   },
 ]);
