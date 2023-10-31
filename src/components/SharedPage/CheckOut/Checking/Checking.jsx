@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../../Route/Provider/AuthProvider";
 import { useState } from "react";
 import CheckingRaw from "./CheckingRaw";
+import axios from "axios";
 
 
 const Checking = () => {
@@ -14,11 +15,17 @@ const Checking = () => {
         if(user?.email){
 
             const url = `http://localhost:5001/checkout?email=${user.email}`
-            // const url = `http://localhost:5001/checkout?email=nureen11@gmail.com`
-            console.log(url)
-            fetch(url)
-            .then(res=>res.json())
-            .then((data)=> setChecking(data))
+
+
+            axios.get(url,{withCredentials:true})
+            .then(res=>{
+              setChecking(res.data)
+            })
+            
+            // console.log(url)
+            // fetch(url)
+            // .then(res=>res.json())
+            // .then((data)=> setChecking(data))
 
         }
     

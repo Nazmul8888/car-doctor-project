@@ -1,9 +1,10 @@
 
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate} from 'react-router-dom';
 import login from '../../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../../Route/Provider/AuthProvider';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -16,11 +17,21 @@ const Login = () => {
         const password = e.target.password.value;
 
 
-        console.log(email,password)
+        // console.log(email,password)
 
         SignIn(email,password)
         .then(result=>{
-            console.log(result.user)
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+            const user ={email};
+            axios.post('http://localhost:5001/jwt', user,
+            {withCredentials:true})
+            .then(res=>{
+              console.log(res.data)
+              if(res.data.success){
+                Navigate(location?.state? location?.state :'/')
+              }
+            })
         })
         .catch(error=>{
             console.log(error)
