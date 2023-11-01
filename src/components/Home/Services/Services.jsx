@@ -1,19 +1,21 @@
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
+import UseServices from "../../../Hoks/UseServices";
 import ServicesCard from "./ServicesCard";
 
 
 const Services = () => {
+    const services = UseServices();
 
-    const [cards, setCards] = useState([]);
+    // const [cards, setCards] = useState([]);
 
 
 
-    useEffect(() => {
-         fetch('http://localhost:5001/services')
-         .then(res=> res.json())
-         .then(data=> setCards(data))
-      });
+    // useEffect(() => {
+    //      fetch('http://localhost:5001/services')
+    //      .then(res=> res.json())
+    //      .then(data=> setCards(data))
+    //   });
     return (
         <div className="mt-4">
            <h2 className="text-[#FF3811] text-xl text-center">Service</h2> 
@@ -23,7 +25,7 @@ const Services = () => {
            </p>
            <div className="grid md:grid-cols-1 lg:grid-cols-3">
            {
-            cards.map(service=><ServicesCard key={service._id} service={service}></ServicesCard>)
+            services.map(service=><ServicesCard key={service._id} service={service}></ServicesCard>)
            }
            </div>
         </div>

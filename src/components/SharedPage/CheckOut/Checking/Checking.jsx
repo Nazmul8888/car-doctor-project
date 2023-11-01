@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../../Route/Provider/AuthProvider";
 import { useState } from "react";
 import CheckingRaw from "./CheckingRaw";
-import axios from "axios";
+
 
 
 const Checking = () => {
@@ -17,15 +17,15 @@ const Checking = () => {
             const url = `http://localhost:5001/checkout?email=${user.email}`
 
 
-            axios.get(url,{withCredentials:true})
-            .then(res=>{
-              setChecking(res.data)
-            })
+            // axios.get(url,{withCredentials:true})
+            // .then(res=>{
+            //   setChecking(res.data)
+            // })
             
-            // console.log(url)
-            // fetch(url)
-            // .then(res=>res.json())
-            // .then((data)=> setChecking(data))
+            console.log(url)
+            fetch(url,{credentials: 'include'})
+            .then(res=>res.json())
+            .then((data)=> setChecking(data))
 
         }
     

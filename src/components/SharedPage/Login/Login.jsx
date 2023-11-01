@@ -1,15 +1,18 @@
 
 
-import { Link, Navigate} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import login from '../../../assets/images/login/login.svg'
-import { useContext } from 'react';
-import { AuthContext } from '../../../Route/Provider/AuthProvider';
-import axios from 'axios';
+import UseAuth from '../../../Hoks/UseAuth';
+// import { useContext } from 'react';
+// import { AuthContext } from '../../../Route/Provider/AuthProvider';
+
 
 const Login = () => {
+// custom hooks
 
 
-    const {SignIn}= useContext(AuthContext)
+const {SignIn} = UseAuth
+    // const {SignIn}= useContext(AuthContext)
 
     const handelLogin = e=>{
       e.preventDefault()
@@ -20,22 +23,29 @@ const Login = () => {
         // console.log(email,password)
 
         SignIn(email,password)
+
         .then(result=>{
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-            const user ={email};
-            axios.post('http://localhost:5001/jwt', user,
-            {withCredentials:true})
-            .then(res=>{
-              console.log(res.data)
-              if(res.data.success){
-                Navigate(location?.state? location?.state :'/')
-              }
-            })
+          console.log(result.user)
         })
         .catch(error=>{
-            console.log(error)
+          console.log(error)
         })
+        // .then(result=>{
+    //         const loggedInUser = result.user;
+    //         console.log(loggedInUser);
+    //         const user ={email};
+    //         axios.post('http://localhost:5001/jwt', user,
+    //         {withCredentials:true})
+    //         .then(res=>{
+    //           console.log(res.data)
+    //           if(res.data.success){
+    //             Navigate(location?.state? location?.state :'/')
+    //           }
+    //         })
+    //     })
+    //     .catch(error=>{
+    //         console.log(error)
+    //     })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
